@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<canvas id="canvas" width="500px" height="500px" ></canvas>
+    <head>
+    </head>
+        <body>
+            
+            
+            <script type="text/javascript" src="app.js"></script>
+            
+            <script>
+            
+            var x = 250;
+            var y = 250;
+            
+            var canvas = document.getElementById("canvas");
+            canvas.addEventListener("mousemove", mooseMove);
+            
+            function fibynib() 
+            {
+                context.font="20px verdana";
+                context.fillText("Fibynib", x, y)
+            }
+            
+            function mooseMove(mouse)
+            {
+                x = mouse.clientX;
+                y = mouse.clientY;
+                fibynib();
+            }
+            
+            context.beginPath();
+            context.rect(10, 10, 100, 200);
+            context.fillStyle="black";
+            context.fill();
+            
+            context.beginPath();
+            context.rect(20, 30, 80, 160);
+            context.lineWidth="10";
+            context.strokeStyle="white";
+            context.stroke();
+            
+            context.beginPath();
+            context.rect(20, 30, 80, 20);
+            context.fillStyle="white";
+            context.fill();
+            
+            context.beginPath();
+            context.rect(15, 180, 90, 20);
+            context.fillStyle="white";
+            context.fill();
+            
+            context.beginPath();
+            context.arc(40, 40, 3, 0, 2 * Math.PI);
+            context.fillStyle="black";
+            context.fill();
+            
+            context.beginPath();
+            context.rect(48, 39, 30, 2);
+            context.fillStyle="black";
+            context.fill();
+            
+            context.beginPath();
+            context.arc(62, 33, 2, 0, 2 * Math.PI);
+            context.fillStyle="black";
+            context.fill();
+            
+            context.beginPath();
+            context.arc(60, 190, 8, 0, 2 * Math.PI);
+            context.lineWidth="1";
+            context.strokeStyle="silver";
+            context.stroke();
+            
+            
+            </script>
+            
+            
+        </body>
+</html>
