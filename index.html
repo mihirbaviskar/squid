@@ -9,12 +9,47 @@
             
             <script>
             
+            //Function to get the mouse position
+        function getMousePos(canvas, event) {
+            var home = canvas.getBoundingClientRect();
+            return {
+                x: event.clientX - home.left,
+                y: event.clientY - home.top
+            };
+        }
+        
+        //Function to check whether a point is inside a rectangle
+        function isInside(pos, home){
+            return pos.x > home.x && pos.x < home.x+home.width && pos.y < home.y+home.height && pos.y > home.y
+        }
+
             var x = 250;
             var y = 250;
             
             var canvas = document.getElementById("canvas");
             canvas.addEventListener("mousemove", mooseMove);
             
+
+//The rectangle should have x,y,width,height properties
+        var home = {
+            x:100,
+            y:360,
+            width:40,
+            height:40
+        };
+        
+        //Binding the click event on the canvas
+        canvas.addEventListener('click', function(evt) {
+            var mousePos = getMousePos(canvas, evt);
+
+           if (isInside(mousePos, home)) {
+               alert('Clicked inside home button');
+            }else{
+                alert('Clicked outside home button');
+           }   
+        }, false);
+
+
             function fibynib() 
             {
                 context.font="20px verdana";
@@ -25,54 +60,54 @@
             {
                 x = mouse.clientX;
                 y = mouse.clientY;
-                fibynib();
+                //fibynib();
             }
             
             context.beginPath();
-            context.rect(10, 10, 100, 200);
+            context.rect(20, 20, 200, 400);
             context.fillStyle="black";
             context.fill();
             
             context.beginPath();
-            context.rect(20, 30, 80, 160);
-            context.lineWidth="10";
+            context.rect(40, 60, 160, 320);
+            context.lineWidth="20";
             context.strokeStyle="white";
             context.stroke();
             
             context.beginPath();
-            context.rect(20, 30, 80, 20);
+            context.rect(40, 60, 160, 40);
             context.fillStyle="white";
             context.fill();
             
             context.beginPath();
-            context.rect(15, 180, 90, 20);
+            context.rect(30, 360, 180, 40);
             context.fillStyle="white";
             context.fill();
             
             context.beginPath();
-            context.arc(40, 40, 3, 0, 2 * Math.PI);
+            context.arc(80, 80, 6, 0, 2 * Math.PI);
             context.fillStyle="black";
             context.fill();
             
             context.beginPath();
-            context.rect(48, 39, 30, 2);
+            context.rect(96, 78, 60, 4);
             context.fillStyle="black";
             context.fill();
             
             context.beginPath();
-            context.arc(62, 33, 2, 0, 2 * Math.PI);
+            context.arc(124, 66, 4, 0, 2 * Math.PI);
             context.fillStyle="black";
             context.fill();
             
             context.beginPath();
-            context.arc(60, 190, 8, 0, 2 * Math.PI);
-            context.lineWidth="1";
+            context.arc(120, 380, 16, 0, 2 * Math.PI);
+            context.lineWidth="2";
             context.strokeStyle="silver";
             context.stroke();
             
             
             </script>
             
-            
+          <button name="btn1" onclick="javascript:alert('hello')"  />
         </body>
 </html>
