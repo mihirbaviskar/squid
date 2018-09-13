@@ -144,14 +144,14 @@
             100% {visibility: hidden;  left: 15%; }
         }
         
-        h4 {
+        /*h4 {
          
             position: absolute;
             width: 40%;
             z-index:10;
             margin: 0 auto;
             font-size: 20px;
-        }
+        }*/
         
         
     </style>
@@ -164,6 +164,9 @@
         <h3 id="wantplay">Do you want to play a game?</h3>
         <h1 id="myscore"></h1>
         <h1 id="over"></h1>
+        <!--h4>IHS Computer Science Club</h4>
+        <h5>By:Mihir Baviskar & Ryan La</h5-->
+        <center><button type="button" onclick="startGame()">Start Game</button></center>
         
         <div onmousemove="mouse(event)"></div>
         
@@ -202,42 +205,13 @@
         <script> 
         var time = 1300;
         var sc = 0;
-        
+        var clear = 0;
         score();
         function score() {
     document.getElementById("myscore").innerHTML =
      "Score:"+ sc;
 }
       
-    /* 
-        var score = ""; 
-        
-        function myscore() {
-            
-            var points = 0;
-            idk let's test it
-            score += "<br>The number is " + points;
-            
-            var elements = document.getElementById('squidie'),
-                styles = window.getComputedStyle(elements),
-                    tops = styles.getPropertyValue('top'),
-                    rights = styles.getPropertyValue('right');
-            
-            
-            var elementk = document.getElementById('sharkie'),
-                stylek = window.getComputedStyle(elementk),
-                    topk = stylek.getPropertyValue('top'),
-                    rightk = stylek.getPropertyValue('right');
-                  
-            while(tops!=topk && rights!=rightk) {
-                
-                setInterval(function(){ points = points + 1; }, 10);
-            }
-        }
-        
-        document.getElementById(myscore).innerHTML = "score; */
-        
-
         
         function enemy(top,anything){
             
@@ -275,11 +249,17 @@
                     alert("Game Over");
                     document.getElementById("over").innerHTML ="Game Over";
                     clearInterval(id);
+                    console.log("Clear");
+                    clear = 1;
+                    
                 }
                 if(tops==topw && rights==rightw) {
                     alert("Game Over");
                     document.getElementById("over").innerHTML ="Game Over";
                     clearInterval(id);
+                    console.log("Clear");
+                    clear = 1;
+                    
                 }
                 else
                 {
@@ -344,6 +324,8 @@
                     alert("Game Over");
                     document.getElementById("over").innerHTML ="Game Over";
                     clearInterval(id);
+                    clear = 1;
+                    elem2.style.right =110+'%';
                 }
                 else
                 {
@@ -392,15 +374,16 @@
                     rightk = stylek.getPropertyValue('right');
        
             function frame() {
-                if(tops == topk && rights == rightk){
+                if(clear == 1){
                     clearInterval(id);
+                    console.log("Clear");
                 }
                 else
                 {
                     if(position==150) {
                         clearInterval(id);
                         if(anything>14){
-                        anything = anything -2;
+                        anything = anything - 2;
                         }
                         seaweedmove(75, anything);
                     }
@@ -432,8 +415,9 @@
                     rightk = stylek.getPropertyValue('right');
        
             function frame() {
-                if(tops == topk && rights == rightk){
+                if(clear == 1){
                     clearInterval(id);
+                    console.log("Clear");
                 }
                 else
                 {
@@ -478,6 +462,7 @@
             function frame() {
                 if(tops == topk && rights == rightk){
                     clearInterval(id);
+                    
                 }
                 else
                 {
@@ -496,24 +481,14 @@
                 }
             }
         } 
-         //I think its better to do it with arrays but it sgood that you dd thuis
+         //I think it's better to do it with arrays
          
         function squiddown() {
             var sd = document.getElementById("squidie");
             sd.style.top = 50 + "%";
         }
         
-        window.onload = function() {
-          
-	        enemy(50,40);
-	        seaweedmove(75, 50);
-	        movefloor(85, 50);
-	        bubbleup(35);
-	       // secondenemy(30);
-	       
-	       document.onkeydown = squidjump;
-	   
-	       function squidjump() {
+        function squidjump() {
            
            var e = e || window.event;
 
@@ -524,17 +499,64 @@
                 console.log('time'+ time);
                 var sd = document.getElementById("squidie");
                 sd.style.top = 35 + "%";
+                /*var jump = 35;
+                var gradual_jump = 50;
+                while(sd.style.top>(jump + "%")){
+                sd.style.top = 50 + "%";
+                gradual_jump=gradual_jump-1;
+                sd.style.top =gradual_jump + "%";
+                
+                console.log(sd.style.top);
+                }*/
+                // logic for gradual jump but you can barely tell the difference
+                
+                
                 setTimeout(squiddown, time);
                 
             }
         }  
+        
+        function startGame() {
+            alert("To jump press the up arrow.Don't let the shark or whale eat the squid");
+            sc = 0;
+            document.getElementById("myscore").innerHTML =
+            "Score:"+ sc;
+            document.getElementById("over").innerHTML ="";
+            time = 1300;
+            clear = 0;
+            enemy(50,40);
+	        seaweedmove(75, 50);
+	        movefloor(85, 50);
+	        bubbleup(35);
+	       //secondenemy(30);
+	       
+	       document.onkeydown = squidjump;
+	       
+        }
+	   
+	        
+  //  	        document.getElementById("squidie").addEventListener("click", function(){
+     //               this.style.top = 35 + "%";
+       //             setTimeout(squiddown, 1000);
+         //   });
+        
+        /*window.onload = function() {
+          
+	        enemy(50,40);
+	        seaweedmove(75, 50);
+	        movefloor(85, 50);
+	        bubbleup(35);
+	       // secondenemy(30);
+	       
+	       document.onkeydown = squidjump;
+	   
 	        
   //  	        document.getElementById("squidie").addEventListener("click", function(){
      //               this.style.top = 35 + "%";
        //             setTimeout(squiddown, 1000);
          //   });
 	        
-        };
+        }; */
 
 
         </script>
